@@ -9,8 +9,8 @@ gem 'sqlite3'
 gem 'devise'
 # Use Paperclip for uploading photos
 gem 'paperclip', github: 'thoughtbot/paperclip'
-# Protect attributes from mass-assignment in ActiveRecord models
-gem 'protected_attributes'
+# Rails form
+gem 'simple_form'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

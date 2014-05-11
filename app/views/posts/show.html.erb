@@ -5,6 +5,7 @@
         <%= image_tag @post.picture.url(:small) %>
         <div class="post-infos">
         <h3><%= @post.location %><br></h3>
+        Uploaded by <%= @post.user.profile_name %><br>
         <%= @post.infos %><br>
         <div class="post-actions">
         	<%= time_ago_in_words(@post.created_at) + " ago"%> |  
