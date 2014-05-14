@@ -16,12 +16,16 @@
 
 	<div id="page-container">
 		<% if user_signed_in? %>
-		Hello <%= link_to current_user.profile_name, edit_user_registration_path %> | <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+		Hello <%= link_to current_user.profile_name, edit_user_registration_path %> | <%= link_to "Log Out", destroy_user_session_path, method: :delete %><br><br>
 		<% else %>
-			<%= link_to "Register", new_user_registration_path %> | <%= link_to "Log In", new_user_session_path %>
+			<%= link_to "Register", new_user_registration_path %> | <%= link_to "Log In", new_user_session_path %><br><br>
 		<% end %>
-		<p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+
+		<% flash.each do |type, message| %>
+			<p class="<%= type %>"><%= message %></p>
+		<% end %>
+
+
 		<%= yield %>
 	</div>
 
