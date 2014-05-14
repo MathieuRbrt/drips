@@ -16,9 +16,9 @@
 
 	<div id="page-container">
 		<% if user_signed_in? %>
-		Hello <%= link_to current_user.profile_name, edit_user_registration_path %> | <%= link_to "Log Out", destroy_user_session_path, method: :delete %><br><br>
+		Hello <%= link_to current_user.profile_name, edit_user_registration_path %> | <%= link_to "Log Out", logout_path%><br><br>
 		<% else %>
-			<%= link_to "Register", new_user_registration_path %> | <%= link_to "Log In", new_user_session_path %><br><br>
+			<%= link_to "Register", register_path %> | <%= link_to "Log In", new_user_session_path %><br><br>
 		<% end %>
 
 		<% flash.each do |type, message| %>
