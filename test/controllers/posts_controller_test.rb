@@ -23,7 +23,14 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create post" do
+  test "should be logged in to create a post" do
+    post :create, post: { infos: @post.infos, location: @post.location }
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should create post when logged in" do
+    sign_in users(:mathieu)
     assert_difference('Post.count') do
       post :create, post: { infos: @post.infos, location: @post.location }
     end
@@ -36,12 +43,27 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
+
+  test "should redirect post edit when not logged in" do
+    get :edit, id: @post
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should get edit when logged in" do
+    sign_in users(:mathieu)
     get :edit, id: @post
     assert_response :success
   end
 
-  test "should update post" do
+  test "should redirect post update when not logged in" do
+    patch :update, id: @post, post: { infos: @post.infos, location: @post.location }
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should update post when logged in" do
+    sign_in users(:mathieu)
     patch :update, id: @post, post: { infos: @post.infos, location: @post.location }
     assert_redirected_to post_path(assigns(:post))
   end
