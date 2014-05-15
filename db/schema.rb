@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515154104) do
+ActiveRecord::Schema.define(version: 20140515160918) do
 
   create_table "posts", force: true do |t|
     t.string   "location"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140515154104) do
     t.integer  "user_id"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "city"
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"

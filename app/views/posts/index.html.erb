@@ -2,9 +2,9 @@
       <div class="post">
         <%= link_to image_tag(post.picture.url(:small)), post %>
         <div class="post-infos">
-            <h3><%= link_to post.location, post %><br></h3>
+            <h3><%= link_to post.location + ", " + post.city, post %></h3>
             Uploaded by <%= post.user.profile_name %><br>
-            <%= post.infos %><br>
+            <%= post.latitude %> / <%= post.longitude %><br><br>
             <div class="post-actions">
                 <%= link_to time_ago_in_words(post.created_at) + " ago", post %>
                 <div class="admin"> |  
