@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "create", to: 'posts#new', as: :create_post
   root to: 'posts#index'
 
+  get '/:id', to: 'profiles#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

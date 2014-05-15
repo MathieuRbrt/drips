@@ -9,3 +9,8 @@ two:
   location: MyString
   infos: MyText
   user: mathieu
+
+three:
+  location: MyString
+  infos: MyText
+  user: jesse

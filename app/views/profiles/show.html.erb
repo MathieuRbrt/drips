@@ -1,2 +1,7 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<h1><%= @user.profile_name %></h1>
+
+<% if @posts %>
+	<% @posts.each do |post| %>
+		<%= post.location %><br>
+	<% end %>
+<% end %>
