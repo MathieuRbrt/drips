@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140511184833) do
+ActiveRecord::Schema.define(version: 20140515154104) do
 
   create_table "posts", force: true do |t|
     t.string   "location"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20140511184833) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.integer  "user_id"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"

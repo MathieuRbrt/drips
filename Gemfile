@@ -11,6 +11,8 @@ gem 'devise'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 # Rails form
 gem 'simple_form'
+# Geocoder
+gem 'geocoder'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
