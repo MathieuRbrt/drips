@@ -3,7 +3,9 @@
 one:
   location: MyString
   infos: MyText
+  user: mathieu
 
 two:
   location: MyString
   infos: MyText
+  user: mathieu

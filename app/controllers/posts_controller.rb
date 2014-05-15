@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :authenticate_user!, only: [:new]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts

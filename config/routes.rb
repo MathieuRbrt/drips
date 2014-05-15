@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :posts
   get "feed", to: 'posts#index', as: :feed
+  get "create", to: 'posts#new', as: :create_post
   root to: 'posts#index'
 
 
