@@ -12,5 +12,8 @@ class User < ActiveRecord::Base
          	first_name + " " + last_name
          end
 
+         def soft_delete
+          update_attribute(:deleted_at, Time.current)
+        end
 
 end
