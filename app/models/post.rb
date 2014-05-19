@@ -17,8 +17,11 @@ class Post < ActiveRecord::Base
 
 	after_validation :geocode
 
+	scope :approved, -> { where(approved: true) }
+	scope :not_approved, -> { where(approved: false) }
+
 	def full_address
     	location + ", " + city
    	end
-
+   	
 end

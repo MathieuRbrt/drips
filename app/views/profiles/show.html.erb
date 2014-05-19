@@ -4,7 +4,7 @@
 <% else %>
 	<h2>Regular user</h2>
 <% end %>
-<% if current_user.id == @user.id %>
+<% if current_user && current_user.id == @user.id %>
 <%= link_to "Edit profile", edit_user_registration_path %><br><br>
 <% end %>
 <% if @posts %>

@@ -1,11 +1,17 @@
 class PostsController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_filter :authenticate_user!, only: [:moderate, :new, :create, :edit, :update]
+  before_filter :authorize_admin, only: [:moderate, :edit, :update, :destroy]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.order("created_at DESC")
+    @posts = Post.approved.order("created_at DESC")
+  end
+
+  # GET /moderate
+  def moderate
+    @posts = Post.not_approved.order("created_at DESC")
   end
 
   # GET /posts/1
