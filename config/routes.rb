@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :artists
+
+  devise_for :admins
   get 'profiles/show'
 
   devise_for :users
@@ -13,7 +16,7 @@ Rails.application.routes.draw do
   get "create", to: 'posts#new', as: :create_post
   root to: 'posts#index'
 
-  get '/:id', to: 'profiles#show'
+  get '/:id', to: 'profiles#show', as: :profile
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

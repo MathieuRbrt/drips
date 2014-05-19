@@ -13,6 +13,7 @@ class Post < ActiveRecord::Base
 	geocoded_by :full_address
 
 	belongs_to :user
+	belongs_to :artist
 
 	after_validation :geocode
 

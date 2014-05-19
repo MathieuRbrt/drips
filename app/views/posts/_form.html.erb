@@ -1,3 +1,4 @@
+
 <%= simple_form_for @post, :html => { :multipart => true } do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
@@ -10,9 +11,24 @@
       </ul>
     </div>
   <% end %>
-  <%= f.input :user_id, collection: User.all, label_method: :profile_name %>
     <%= f.input :picture %>
+    <%= f.input :artist_id, collection: Artist.all, label_method: :name %>
     <%= f.input :location %>
-    <%= f.input :city %>
+    <%= f.input :city %><br/>
+    <div id="GPSLocation-box" style="display:none;">
+      Locate Me: <input type="checkbox" id="GPSLocation-check"><br/><br/>
+    </div>
+        <script language="javascript" type="text/javascript"> 
+      if (navigator.geolocation) {  
+        $( "#GPSLocation-box" ).show();
+      } else {  
+          
+      }  
+    </script>
+
+
     <%= f.button :submit %>
 <% end %>
+
+   
+
