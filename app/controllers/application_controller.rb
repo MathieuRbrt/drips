@@ -5,10 +5,17 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+private
   def authorize_admin
-    redirect_to posts_url if current_user && current_user.admin != true
-    #redirects to previous page
+    authenticate_user!
+
+    if current_user.admin
+       return
+    else
+       redirect_to root_url
+    end
   end
+
 
   protected
 

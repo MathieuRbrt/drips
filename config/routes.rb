@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "feed", to: 'posts#index', as: :feed
   get "moderate", to: 'posts#moderate', as: :moderate
   get "create", to: 'posts#new', as: :create_post
+  put '/posts/:id/publish' => 'posts#publish_post', :as => 'publish_post'
   root to: 'posts#index'
 
 

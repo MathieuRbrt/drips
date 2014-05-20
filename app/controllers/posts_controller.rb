@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, only: [:moderate, :new, :create, :edit, :update]
-  before_filter :authorize_admin, only: [:moderate, :edit, :update, :destroy]
+  before_filter :authorize_admin, only: [:moderate, :edit, :update, :destroy, :publish_post]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   
   # GET /posts
@@ -28,11 +28,15 @@ class PostsController < ApplicationController
   def edit
   end
 
+
   # POST /posts
   # POST /posts.json
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    if current_user.admin?
+      @post.approved = true
+    end
 
     respond_to do |format|
       if @post.save
@@ -69,6 +73,13 @@ class PostsController < ApplicationController
     end
   end
 
+
+  def publish_post
+      @post = Post.find(params[:id])
+      @post.update_attribute(:approved, true)
+      redirect_to :back, :notice => "Post published!"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -77,6 +88,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:location, :city, :picture, :user_id, :artist_id)
+      params.require(:post).permit(:location, :city, :picture, :user_id, :artist_id, :approved)
     end
 end

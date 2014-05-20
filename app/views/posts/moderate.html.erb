@@ -9,7 +9,7 @@
                 <%= link_to time_ago_in_words(post.created_at) + " ago", post %>
                 <% if current_user && current_user.admin? %>
                 <div class="admin"> |  
-                    <%= link_to 'Edit', edit_post_path(post) %> |  <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+                   <%= link_to 'Publish', publish_post_path(post.id), :method => :put %>  | <%= link_to 'Edit', edit_post_path(post) %> | <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
                 </div>
                 <% end %>
             </div>
