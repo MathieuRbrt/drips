@@ -13,3 +13,5 @@
             <% end %>
         </div>
       </div>
+
+      <%= image_tag "http://maps.google.com/maps/api/staticmap?size=360x200&sensor=false&zoom=16&markers=#{@post.latitude}%2C#{@post.longitude}" %>  

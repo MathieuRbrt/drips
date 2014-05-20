@@ -12,10 +12,11 @@ class Post < ActiveRecord::Base
 	validates :user_id, presence: true
 	geocoded_by :full_address
 
+
 	belongs_to :user
 	belongs_to :artist
 
-	after_validation :geocode
+	after_validation :geocode, :if => Proc.new { latitude.blank? }
 
 	scope :approved, -> { where(approved: true) }
 	scope :not_approved, -> { where(approved: false) }
@@ -23,5 +24,7 @@ class Post < ActiveRecord::Base
 	def full_address
     	location + ", " + city
    	end
-   	
+
+   	private
+
 end

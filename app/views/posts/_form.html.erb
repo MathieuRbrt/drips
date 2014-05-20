@@ -13,17 +13,62 @@
   <% end %>
     <%= f.input :picture %>
     <%= f.input :artist_id, collection: Artist.all, label_method: :name %>
-    <%= f.input :location %>
-    <%= f.input :city %><br/>
+    <%= f.input :location, :input_html => { :id => "geo-location" } %>
+    <%= f.input :city, :input_html => { :id => "geo-city" } %><br/>
     <div id="GPSLocation-box" style="display:none;">
-      Locate Me: <input type="checkbox" id="GPSLocation-check"><br/><br/>
+      <input type="button" onclick="get_location()" value="Locate Me" /><br/><br/>
+      <%= f.input :latitude, :input_html => { :id => "geo-latitude" } %>
+      <%= f.input :longitude, :input_html => { :id => "geo-longitude" } %>
+      <div id="geoinfo"></div>
     </div>
         <script language="javascript" type="text/javascript"> 
       if (navigator.geolocation) {  
         $( "#GPSLocation-box" ).show();
       } else {  
           
-      }  
+      }
+
+      function get_location(){
+        navigator.geolocation.getCurrentPosition(geocode, handle_error,  {enableHighAccuracy:true,maximumAge:600000});
+      }
+
+        function geocode(position)
+        {
+          var latlong = position.coords.latitude + "," + position.coords.longitude;
+
+          if(window.XMLHttpRequest)
+            var request = new XMLHttpRequest();
+          else if(window.ActiveXObject)
+            var request = ActiveXObject("Microsoft.XMLHTTP");
+
+          request.open("GET", "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latlong + "&sensor=true&language=en", true);
+          request.send();
+
+          request.onreadystatechange = function()
+          {
+            if(request.readyState == 4 && request.status == 200)
+            {
+              var address = eval("(" + request.responseText + ")");
+              document.getElementById("geo-location").value = address.results[0].address_components[0].long_name + " " + address.results[0].address_components[1].long_name;
+              document.getElementById("geo-city").value = address.results[5].address_components[0].long_name;
+              document.getElementById("geo-latitude").value = position.coords.latitude;
+              document.getElementById("geo-longitude").value = position.coords.longitude;
+            }
+          }
+        }
+
+        function handle_error(err)
+        {
+          switch(err.code)
+          {
+            case 1: /* PERMISSION_DENIED */ break;
+            case 2: /* POSITION_UNAVAILABLE */ break;
+            case 3: /* TIMEOUT */ break;
+          }
+          alert(err.code);
+        }
+
+
     </script>
 
 
