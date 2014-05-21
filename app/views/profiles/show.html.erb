@@ -8,6 +8,11 @@
 <% if current_user && current_user.id == @user.id %>
 <%= link_to "Edit profile", edit_user_registration_path %><br><br>
 <% end %>
+<p style="margin-bottom:80px;">
+ <% @user.badges.first(5).each do |b| %>
+   <%= image_tag (b.custom_fields[:image]), :alt => b.description, :style => "float:left" %>
+ <%end%>
+</p>
 <% if @posts %>
 	<% @posts.each do |post| %>
 		<%= link_to post.location, post %><br>

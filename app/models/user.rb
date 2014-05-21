@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_merit
+
   make_flagger
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

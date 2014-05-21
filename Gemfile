@@ -15,6 +15,8 @@ gem 'simple_form'
 gem 'geocoder'
 # make_flaggable
 gem 'make_flaggable', :git => 'git://github.com/medihack/make_flaggable.git'
+#Merit
+gem 'merit'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

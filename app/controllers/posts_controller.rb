@@ -53,7 +53,11 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        if current_user.admin?
+          format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        else
+          format.html { redirect_to @post, notice: 'Great! Your post will be moderated soon!' }
+        end
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
