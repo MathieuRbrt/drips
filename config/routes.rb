@@ -11,7 +11,11 @@ Rails.application.routes.draw do
     get "logout", to: 'devise/sessions#destroy', as: :logout
   end
 
-  resources :posts
+  resources :posts do
+    member do
+      get 'like'
+    end
+  end
   get "feed", to: 'posts#index', as: :feed
   get "moderate", to: 'posts#moderate', as: :moderate
   get "create", to: 'posts#new', as: :create_post

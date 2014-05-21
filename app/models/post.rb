@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+	make_flaggable
 	has_attached_file :picture,
 						:convert_options => { :all => "-quality 75" },
 						:styles => { :small => "360x" },

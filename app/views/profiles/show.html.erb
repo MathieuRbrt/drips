@@ -1,9 +1,10 @@
 <h1><%= @user.profile_name %></h1>
 <% if @user.admin? %>
-	<h2>Admin user</h2>
+	<p>Moderator
 <% else %>
-	<h2>Regular user</h2>
+	<p>Joined <%= time_ago_in_words(@user.created_at) + " ago" %>
 <% end %>
+ - Uploaded <%= @posts.count %> Drips</p>
 <% if current_user && current_user.id == @user.id %>
 <%= link_to "Edit profile", edit_user_registration_path %><br><br>
 <% end %>

@@ -6,10 +6,10 @@
             Uploaded by <%= post.user.profile_name %><br>
             <%= post.latitude %> / <%= post.longitude %><br><br>
             <div class="post-actions">
-                <%= link_to time_ago_in_words(post.created_at) + " ago", post %>
+                <%= link_to time_ago_in_words(post.created_at) + " ago", post %> | <% if current_user.present? %><%= link_to "Like", like_post_path(post) %><% end %>
                 <% if current_user && current_user.admin? %>
                 <div class="admin"> |  
-                    <%= link_to 'Edit', edit_post_path(post) %> |  <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%= link_to 'Edit', edit_post_path(post) %> | <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
                 </div>
                 <% end %>
             </div>

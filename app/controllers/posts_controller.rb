@@ -3,6 +3,13 @@ class PostsController < ApplicationController
   before_filter :authorize_admin, only: [:moderate, :edit, :update, :destroy, :publish_post]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   
+
+  def like
+    @post = Post.find(params[:id])
+    current_user.flag(@post, :like)
+    redirect_to posts_path, :notice => "You now like this post"   
+  end
+
   # GET /posts
   # GET /posts.json
   def index
