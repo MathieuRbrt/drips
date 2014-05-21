@@ -19,6 +19,7 @@
       <input type="button" onclick="get_location()" value="Locate Me" /><br/><br/>
       <%= f.input :latitude, :input_html => { :id => "geo-latitude" } %>
       <%= f.input :longitude, :input_html => { :id => "geo-longitude" } %>
+      <%= f.input :country, :input_html => { :id => "geo-country" } %>
       <div id="geoinfo"></div>
     </div>
         <script language="javascript" type="text/javascript"> 
@@ -51,6 +52,7 @@
               var address = eval("(" + request.responseText + ")");
               document.getElementById("geo-location").value = address.results[0].address_components[0].long_name + " " + address.results[0].address_components[1].long_name;
               document.getElementById("geo-city").value = address.results[5].address_components[0].long_name;
+              document.getElementById("geo-country").value = address.results[9].address_components[0].long_name;
               document.getElementById("geo-latitude").value = position.coords.latitude;
               document.getElementById("geo-longitude").value = position.coords.longitude;
             }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520160459) do
+ActiveRecord::Schema.define(version: 20140521110417) do
 
   create_table "admins", force: true do |t|
     t.string   "email",              default: "", null: false
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20140520160459) do
     t.string   "city"
     t.integer  "artist_id"
     t.boolean  "approved",             default: false
+    t.string   "country"
   end
 
   add_index "posts", ["artist_id"], name: "index_posts_on_artist_id"

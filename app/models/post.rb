@@ -11,7 +11,14 @@ class Post < ActiveRecord::Base
 	validates :location, presence: true
 	validates :city, presence: true
 	validates :user_id, presence: true
-	geocoded_by :full_address
+
+	geocoded_by :full_address do |obj,results|
+	  if geo = results.first
+	    obj.country = geo.country
+	    obj.latitude = geo.latitude
+	    obj.longitude = geo.longitude
+	  end
+	end
 
 
 	belongs_to :user
