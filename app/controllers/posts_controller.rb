@@ -19,6 +19,7 @@ class PostsController < ApplicationController
   # GET /moderate
   def moderate
     @posts = Post.not_approved.order("created_at DESC")
+    @suggestions = Suggestion.all
   end
 
   # GET /posts/1
@@ -85,7 +86,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to moderate_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -94,7 +95,17 @@ class PostsController < ApplicationController
   def publish_post
       @post = Post.find(params[:id])
       @post.update_attribute(:approved, true)
-      redirect_to :back, :notice => "Post published!"
+      redirect_to moderate_url, :notice => "Post published!"
+  end
+
+  def accept_suggestion
+      @suggestion = Suggestion.find(params[:id])
+      @user = @suggestion.user
+      @post = @suggestion.post
+      @user.increment!(:suggested, by = 1)
+      @post.update_attribute(:artist_id, @suggestion.artist_id)
+      @suggestion.destroy
+      redirect_to :back, :notice => "Suggestion accepted!"
   end
 
   private

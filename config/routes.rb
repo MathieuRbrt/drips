@@ -20,7 +20,10 @@ Rails.application.routes.draw do
   get "moderate", to: 'posts#moderate', as: :moderate
   get "create", to: 'posts#new', as: :create_post
   put '/posts/:id/publish' => 'posts#publish_post', :as => 'publish_post'
+  put '/posts/:id/acceptsug' => 'posts#accept_suggestion', :as => 'accept_suggestion'
   root to: 'posts#index'
+
+  delete 'decline_suggestion' => 'suggestions#destroy'
 
 
   get '/:id', to: 'profiles#show', as: :profile

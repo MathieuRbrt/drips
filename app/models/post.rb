@@ -15,6 +15,7 @@ class Post < ActiveRecord::Base
 	geocoded_by :full_address do |obj,results|
 	  if geo = results.first
 	    obj.country = geo.country
+	    obj.city = geo.city
 	    obj.latitude = geo.latitude
 	    obj.longitude = geo.longitude
 	  end
@@ -23,6 +24,7 @@ class Post < ActiveRecord::Base
 
 	belongs_to :user
 	belongs_to :artist
+	has_many :suggestions
 
 	after_validation :geocode, :if => Proc.new { latitude.blank? }
 
