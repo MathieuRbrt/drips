@@ -1,0 +1,7 @@
+<%= simple_form_for suggestion, :html => { :multipart => true } do |f| %>
+  <%= f.input :artist_id, collection: Artist.all, label_method: :name %>
+  <%= f.hidden_field :post_id, :value => post.id %>
+   <%= f.button :submit %>
+<% end %>
+
+<br/><br/>

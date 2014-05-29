@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-     @post = Post.find(params[:id])
+    @post = Post.find(params[:id])
     if @post.approved? || current_user.admin?
       return
     else

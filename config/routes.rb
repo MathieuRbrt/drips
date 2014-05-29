@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :artists
+  resources :artists, :suggestions
 
   devise_for :admins
   get 'profiles/show'
