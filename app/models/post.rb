@@ -38,7 +38,7 @@ class Post < ActiveRecord::Base
    	end
 
    	def likes
-   		flaggings.count.to_s
+   		flaggings_count.to_s
    	end
 
    	private

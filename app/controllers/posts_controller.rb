@@ -19,7 +19,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.approved.order("created_at DESC")
+    if params[:sort]
+      @posts = Post.approved.order(params[:sort])
+    else
+      @posts = Post.approved.order("created_at DESC")
+    end
   end
 
   # GET /moderate

@@ -1,10 +1,15 @@
+<% if @user.avatar.present? %>
+<%= link_to image_tag(@user.avatar.url(:medium)), edit_user_registration_path, :class => "user_avatar" %>
+<% else %>
+<%= link_to "Upload avatar", edit_user_registration_path, :class => "user_avatar no_avatar" %>
+<% end %>
 <h1><%= @user.profile_name %></h1>
 <% if @user.admin? %>
 	<p>Moderator
 <% else %>
 	<p>Joined <%= time_ago_in_words(@user.created_at) + " ago" %>
 <% end %>
- - Uploaded <%= @posts.count %> Drips</p>
+ - Uploaded <%= @posts.count %> Drips - Karma <%= @user.karma %></p>
 <% if current_user && current_user.id == @user.id %>
 	<%= link_to "Edit profile", edit_user_registration_path %><br>
 <% end %>

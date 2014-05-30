@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, :styles => { :medium => "300x300#", :thumb => "100x100#" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   has_merit
 
@@ -12,16 +12,25 @@ class User < ActiveRecord::Base
          has_many :posts
          has_many :suggestions
 
-         def full_name
-         	first_name + " " + last_name
-         end
+        def full_name
+          first_name + " " + last_name
+        end
 
-         def soft_delete
+        def published_post
+          posts.approved.count
+        end
+
+        def karma
+          (published_post*10)+(flaggings_count)+(suggested*4)
+          #Add shared count*2
+        end
+
+        def soft_delete
           update_attribute(:deleted_at, Time.current)
         end
 
          def user_params
-      params.require(:user).permit(:avatar)
-    end
+          params.require(:user).permit(:avatar)
+        end
 
 end
