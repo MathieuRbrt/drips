@@ -19,6 +19,8 @@ gem 'make_flaggable', :git => 'git://github.com/medihack/make_flaggable.git'
 gem 'merit'
 #Rails 4 autocomplete
 gem 'rails4-autocomplete'
+#Masonry for the posts layout
+gem 'masonry-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

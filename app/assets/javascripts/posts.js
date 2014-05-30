@@ -1,5 +1,12 @@
-$('.vote')
-  .on('ajax:send', function () { $(this).addClass('loading'); })
-  .on('ajax:complete', function () { $(this).removeClass('loading'); })
-  .on('ajax:error', function () { $(this).after('<div class="error">There was an issue.</div>'); })
-  .on('ajax:success', function (data) { $(this).html(data.count); });
+$(function(){
+var $container = $('#masonry-container');
+$container.imagesLoaded( function(){
+  $container.masonry({
+    itemSelector: '.post-masonry',
+    columnWidth: 278,
+    gutterWidth: 16,
+    isAnimated: !Modernizr.csstransitions,
+    isFitWidth: true
+    });
+  });
+});

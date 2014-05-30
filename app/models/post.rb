@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
 	make_flaggable
 	has_attached_file :picture,
 						:convert_options => { :all => "-quality 75" },
-						:styles => { :small => "360x" },
+						:styles => { :small => "278x" },
 						:url => "/assets/posts/:id/:style/:basename.:extension",
 						:path => ":rails_root/public/assets/posts/:id/:style/:basename.:extension"
 

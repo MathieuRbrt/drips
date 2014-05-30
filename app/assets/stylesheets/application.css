@@ -1,9 +1,20 @@
-
+*= require 'masonry/basic'
+*= require 'masonry/centered'
+*= require 'masonry/fluid'
+*= require 'masonry/gutters'
+*= require 'masonry/infinitescroll'
+*= require 'masonry/right-to-left'
+*= require 'masonry/transitions'
 
 *{
     margin: 0;
   padding: 0;
 }
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+.centered { margin: 0 auto; }
 
 
 body {
@@ -65,7 +76,9 @@ body {
 }
 
 #header-container {
-	width: 350px;
+  max-width: 1160px;
+  padding-left: 30px;
+  padding-right: 30px;
 	margin: auto;
 	color: white;
 	line-height: 48px;
@@ -79,11 +92,15 @@ font-size: 34px;
 
 
 #page-container {
-	width: 350px;
-	margin: auto;
-	margin-top:130px;
+  max-width: 1160px;
+  margin: 100px auto 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
+#masonry-container {
+  clear: both;
+}
 
 
 .post a, .post a:visited {
@@ -91,15 +108,12 @@ font-size: 34px;
   color: #fff;
 }
 
-body {
-}
-
 .post {
     font-family: 'Raleway', sans-serif;
   position: relative;
-  width: 360px;
+  width: 278px;
   margin: auto;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   overflow: hidden;
   background-color:rgb(35,34,38);
   border-radius: 3px;
@@ -128,7 +142,7 @@ body {
 
 .post .post-img {
   position: relative;
-	width: 360px;
+	width: 278px;
 	float: right;
   vertical-align: bottom;
 }
@@ -157,6 +171,7 @@ body {
 .post .post-details h4.post-address {
   font-weight: 600;
   font-size: 1.2em;
+  margin: 0;
 }
 
 .post .post-details h5.post-city {

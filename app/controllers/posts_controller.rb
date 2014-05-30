@@ -96,7 +96,11 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to moderate_url, notice: 'Post was successfully destroyed.' }
+    if (@post.approved?)
+      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+    else
+       format.html { redirect_to moderate_url, notice: 'Post was successfully destroyed.' }
+    end
       format.json { head :no_content }
     end
   end
