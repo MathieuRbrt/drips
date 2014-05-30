@@ -18,7 +18,7 @@ class SuggestionsController < ApplicationController
         format.html { redirect_to @post, notice: 'Your suggestion will be moderated soon!' }
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { render :new }
+        format.html { redirect_to @post, alert: 'Your suggestion is not valid' }
         format.json { render json: @suggestion.errors, status: :unprocessable_entity }
       end
     end

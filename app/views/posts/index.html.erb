@@ -1,4 +1,4 @@
-    <% @posts.each do |post| %>
+<% @posts.each do |post| %>
 <div class="post">
         <%= link_to image_tag(post.picture.url(:small)), post %>
         <div class="post-details">
@@ -7,10 +7,10 @@
           <div class="post-more">
             <hr>
             <span>Uploaded by <%= link_to post.user.profile_name, profile_path(post.user.profile_name) %> <%= time_ago_in_words(post.created_at) + " ago" %></span>
-            <span><% if current_user.present? %><%= link_to "Like", like_post_path(post) %><% end %><% if current_user && current_user.admin? %> |  <%= link_to 'Edit', edit_post_path(post) %> | <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></span>
+            <span><%= likes_plural(post) %><% if current_user.present? %><%= toggle_like_button(post, current_user) %><% end %>
+              <% if current_user && current_user.admin? %> |  <%= link_to 'Edit', edit_post_path(post) %> | <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></span>
           </div>
         </div>
 
       </div>
-
-        <% end %>
+  <% end %>

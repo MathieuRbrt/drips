@@ -6,8 +6,14 @@ class PostsController < ApplicationController
 
   def like
     @post = Post.find(params[:id])
-    current_user.flag(@post, :like)
-    redirect_to posts_path, :notice => "You now like this post"   
+
+    if current_user.flagged?(@post)
+      current_user.unflag(@post)
+      redirect_to posts_path, :notice => "You now dislike this post"   
+    else
+      current_user.flag(@post, :like)
+      redirect_to posts_path, :notice => "You now like this post"   
+    end
   end
 
   # GET /posts

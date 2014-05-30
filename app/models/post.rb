@@ -31,8 +31,14 @@ class Post < ActiveRecord::Base
 	scope :approved, -> { where(approved: true) }
 	scope :not_approved, -> { where(approved: false) }
 
+
+
 	def full_address
     	location + ", " + city
+   	end
+
+   	def likes
+   		flaggings.count.to_s
    	end
 
    	private

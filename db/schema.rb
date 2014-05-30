@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528161939) do
+ActiveRecord::Schema.define(version: 20140529155117) do
 
   create_table "admins", force: true do |t|
     t.string   "email",              default: "", null: false
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20140528161939) do
     t.integer  "artist_id"
     t.boolean  "approved",             default: false
     t.string   "country"
+    t.integer  "flaggings_count"
   end
 
   add_index "posts", ["artist_id"], name: "index_posts_on_artist_id"
@@ -148,6 +149,11 @@ ActiveRecord::Schema.define(version: 20140528161939) do
     t.integer  "sash_id"
     t.integer  "level",                  default: 0
     t.integer  "suggested",              default: 0
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.integer  "flaggings_count"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

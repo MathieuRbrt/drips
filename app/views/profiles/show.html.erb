@@ -6,7 +6,7 @@
 <% end %>
  - Uploaded <%= @posts.count %> Drips</p>
 <% if current_user && current_user.id == @user.id %>
-<%= link_to "Edit profile", edit_user_registration_path %><br><br>
+	<%= link_to "Edit profile", edit_user_registration_path %><br>
 <% end %>
 <p style="margin-bottom:80px;">
  <% @user.badges.first(5).each do |b| %>
