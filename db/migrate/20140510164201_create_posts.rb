@@ -3,6 +3,7 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.string :location
       t.text :infos
+      t.boolean :approved, :default => true
 
       t.timestamps
     end

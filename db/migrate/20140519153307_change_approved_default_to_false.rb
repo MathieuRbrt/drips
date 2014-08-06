@@ -1,9 +1,9 @@
 class ChangeApprovedDefaultToFalse < ActiveRecord::Migration
-def up
+  def up
     change_column :posts, :approved, :boolean, :default => false
-end
+  end
 
-def down
+  def down
     change_column :posts, :approved, :boolean, :default => true
-end
+  end
 end
